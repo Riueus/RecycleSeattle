@@ -1,8 +1,6 @@
-package com.example.recycleseattle;
+package com.bignerdranch.android.recycleseattle;
 
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 public class HomePageActivity extends SingleFragmentActivity {
 
@@ -10,4 +8,6 @@ public class HomePageActivity extends SingleFragmentActivity {
     protected Fragment createFragment() {
         return new HomePageFragment();
     }
+
+
 }

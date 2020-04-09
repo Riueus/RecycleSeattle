@@ -1,4 +1,4 @@
-package com.example.recycleseattle;
+package com.bignerdranch.android.recycleseattle;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.bignerdranch.android.recycleseattle.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
