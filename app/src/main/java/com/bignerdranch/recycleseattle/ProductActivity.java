@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.bignerdranch.android.recycleseattle.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +30,7 @@ public class ProductActivity extends AppCompatActivity {
 
         FragmentManager fm = getSupportFragmentManager();
 
-        if(fm.findFragmentById(R.id.fragment_container) == null) {
+        if (fm.findFragmentById(R.id.fragment_container) == null) {
             Intent intent = getIntent();
             boolean productExists = intent.getBooleanExtra(SearchFragment.PRODUCT_EXISTS, false);
             attachProductFragment(fm, productExists);
@@ -42,7 +41,7 @@ public class ProductActivity extends AppCompatActivity {
 
     private void attachProductFragment(FragmentManager fm, boolean productExists) {
         Fragment prodFragment;
-        if(productExists){
+        if (productExists) {
             prodFragment = new ProductEntryFragment();
         } else {
             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

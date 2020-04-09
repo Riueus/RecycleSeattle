@@ -19,7 +19,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bignerdranch.android.recycleseattle.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -108,11 +107,11 @@ public class SearchFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode != Activity.RESULT_OK) {
+        if (resultCode != Activity.RESULT_OK) {
             return;
         }
 
-        if(requestCode == REQUEST_PHOTO) {
+        if (requestCode == REQUEST_PHOTO) {
             Bundle extras = data.getExtras();
             Bitmap barcodeBitmap = (Bitmap) extras.get("data");
             FirebaseVisionImage barcode = FirebaseVisionImage.fromBitmap(barcodeBitmap);
@@ -128,7 +127,7 @@ public class SearchFragment extends Fragment {
                     .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
                         @Override
                         public void onSuccess(List<FirebaseVisionBarcode> barcodes) {
-                            for (FirebaseVisionBarcode barcode: barcodes) {
+                            for (FirebaseVisionBarcode barcode : barcodes) {
                                 Rect bounds = barcode.getBoundingBox();
                                 Point[] corners = barcode.getCornerPoints();
 
@@ -164,7 +163,7 @@ public class SearchFragment extends Fragment {
                             Log.d("BARCODE", "DONE");
                         }
                     });
-        } else if(requestCode == CREATE_PRODUCT_ENTRY){
+        } else if (requestCode == CREATE_PRODUCT_ENTRY) {
             String barcode = mSearchField.getText().toString();
             String productName = CreateProductEntryFragment.getProductName(data);
             boolean isRecyclable = CreateProductEntryFragment.isRecyclable(data);
@@ -176,7 +175,7 @@ public class SearchFragment extends Fragment {
     private void createProduct(String barcode, String productName, boolean isRecyclable) {
         FirebaseUser fbUser = mAuth.getCurrentUser();
         String userID = fbUser.getUid();
-        Product prod = new Product(productName,isRecyclable, userID);
+        Product prod = new Product(productName, isRecyclable, userID);
         mDatabase.child(barcode).setValue(prod);
     }
 
