@@ -9,5 +9,4 @@ public class HomePageActivity extends SingleFragmentActivity {
         return new HomePageFragment();
     }
 
-
 }

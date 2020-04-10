@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.bignerdranch.android.recycleseattle.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -32,7 +31,7 @@ public class HomePageFragment extends Fragment {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null) {
+        if (currentUser != null) {
             Log.d("BLAH", "HELLO " + currentUser.getDisplayName());
             Intent infoIntent = InformationActivity.newIntent(getActivity());
             startActivity(infoIntent);
@@ -68,4 +67,7 @@ public class HomePageFragment extends Fragment {
         authIntent.putExtra(BUTTON_PRESSED, buttonPressed.getId());
         startActivity(authIntent);
     }
+    //
+    //
+    //
 }
