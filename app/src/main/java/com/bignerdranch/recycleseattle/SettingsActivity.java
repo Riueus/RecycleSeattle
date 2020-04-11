@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.bignerdranch.android.recycleseattle.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +31,7 @@ import java.io.IOException;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private static final int PICK_IMAGE = 100;
     private Button delete_button;
     private Button changePass_button;
     private Button logout_button;
@@ -40,11 +40,10 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView nameText;
     private TextView scoreText;
     private TextView rankText;
-    private static final int PICK_IMAGE = 100;
     private Uri imageUri;
     private int REQUEST_CODE = 1;
     private DatabaseReference mDB;
-    private int[] arr = {10,3,5,1};
+    private int[] arr = {10, 3, 5, 1};
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -95,7 +94,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         //Get user's email from firebase
         final boolean isConnected = hasNetworkConnection();
-        if(isConnected == true) {
+        if (isConnected == true) {
             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             final String email = user.getEmail();
             mDB.child(user.getUid()).child("score").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -105,8 +104,8 @@ public class SettingsActivity extends AppCompatActivity {
                     int temp = Integer.valueOf(score);
                     int rank = 1;
                     scoreText.setText(score);
-                    for(int i: arr){
-                        if(temp < i){
+                    for (int i : arr) {
+                        if (temp < i) {
                             rank++;
                         }
                     }
@@ -128,11 +127,10 @@ public class SettingsActivity extends AppCompatActivity {
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isConnected == true) {
+                if (isConnected == true) {
                     Intent intent = new Intent(SettingsActivity.this, DeleteAccountFragment.class);
                     startActivity(intent);
-                }
-                else{
+                } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(SettingsActivity.this);
                     alert.setTitle("Warning");
                     alert.setMessage("No Internet Connection");
@@ -152,11 +150,10 @@ public class SettingsActivity extends AppCompatActivity {
         changePass_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isConnected == true) {
+                if (isConnected == true) {
                     Intent intent = new Intent(SettingsActivity.this, ChangePasswordFragment.class);
                     startActivity(intent);
-                }
-                else{
+                } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(SettingsActivity.this);
                     alert.setTitle("Warning");
                     alert.setMessage("No Internet Connection");
@@ -172,7 +169,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
-        
+
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,7 +186,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        if(isConnected == false){
+        if (isConnected == false) {
             AlertDialog.Builder alert = new AlertDialog.Builder(SettingsActivity.this);
             alert.setTitle("Warning");
             alert.setMessage("No Internet Connection");
@@ -209,7 +206,7 @@ public class SettingsActivity extends AppCompatActivity {
         Intent gallery = new Intent();
         gallery.setType("image/*");
         gallery.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(gallery,"Select Picture"), REQUEST_CODE);
+        startActivityForResult(Intent.createChooser(gallery, "Select Picture"), REQUEST_CODE);
 
     }
 
@@ -225,18 +222,18 @@ public class SettingsActivity extends AppCompatActivity {
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         boolean isMobileAvailable = networkInfo.isAvailable();
         boolean isMobileConnnected = networkInfo.isConnected();
-        isConnected = (isMobileAvailable&&isMobileConnnected) ||
-                (isWifiAvailable&&isWifiConnected);
-        return(isConnected);
+        isConnected = (isMobileAvailable && isMobileConnnected) ||
+                (isWifiAvailable && isWifiConnected);
+        return (isConnected);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
+        if (resultCode == RESULT_OK) {
             imageUri = data.getData();
             try {
-                Bitmap bmp = MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri);
+                Bitmap bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
                 icon_button.setImageBitmap(bmp);
             } catch (IOException e) {
                 e.printStackTrace();
