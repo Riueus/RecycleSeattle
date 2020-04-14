@@ -64,5 +64,6 @@ public class CreateProductEntryFragment extends Fragment {
         } else {
             Log.e("NULL","Null encountered when trying to setData");
         }
+        //
     }
 }
