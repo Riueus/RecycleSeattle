@@ -14,6 +14,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     private Button mLogInToggle;
     private Button mSignUpToggle;
+    //
 
     public static Intent newIntent(Context packageContext) {
         return new Intent(packageContext, AuthenticationActivity.class);
