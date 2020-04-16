@@ -1,9 +1,6 @@
-package com.bignerdranch.android.recycolumbus;
+package com.bignerdranch.android.recycleseattle;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,9 +19,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import static android.content.Context.CONNECTIVITY_SERVICE;
-import static android.support.v4.content.ContextCompat.getSystemService;
 
 public class LogInFragment extends Fragment {
 
@@ -87,7 +81,7 @@ public class LogInFragment extends Fragment {
     private boolean validateForm() {
         boolean valid = true;
 
-        
+
         String email = mEmail.getText().toString();
         if (TextUtils.isEmpty(email)) {
             mEmail.setError("Required.");

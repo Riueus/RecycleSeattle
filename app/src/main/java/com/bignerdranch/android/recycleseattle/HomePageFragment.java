@@ -67,7 +67,4 @@ public class HomePageFragment extends Fragment {
         authIntent.putExtra(BUTTON_PRESSED, buttonPressed.getId());
         startActivity(authIntent);
     }
-    //
-    //
-    //
 }

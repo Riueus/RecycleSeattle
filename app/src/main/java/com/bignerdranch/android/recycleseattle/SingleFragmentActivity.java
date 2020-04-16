@@ -10,11 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.bignerdranch.android.recycleseattle.R;
-
 public abstract class SingleFragmentActivity extends AppCompatActivity {
-    protected abstract Fragment createFragment();
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -36,6 +32,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    protected abstract Fragment createFragment();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

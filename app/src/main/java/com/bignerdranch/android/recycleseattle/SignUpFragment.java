@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.bignerdranch.android.recycleseattle.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -97,7 +96,7 @@ public class SignUpFragment extends Fragment {
         // [END create_user_with_email]
     }
 
-    private void addNameToUser(FirebaseUser user){
+    private void addNameToUser(FirebaseUser user) {
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(mFirstName.getText().toString() + " " + mLastName.getText().toString())
                 .build();
@@ -118,7 +117,7 @@ public class SignUpFragment extends Fragment {
         fbUser.reload();
         String userID = fbUser.getUid();
         String name = mFirstName.getText().toString() + " " + mLastName.getText().toString();
-        User user = new User(name,fbUser.getEmail());
+        User user = new User(name, fbUser.getEmail());
         mDatabase.child(userID).setValue(user);
 
     }
@@ -155,7 +154,7 @@ public class SignUpFragment extends Fragment {
         if (TextUtils.isEmpty(password)) {
             mPassword.setError("Required");
             valid = false;
-        } else if(!TextUtils.equals(password, confirmPassword)){
+        } else if (!TextUtils.equals(password, confirmPassword)) {
             mConfirmPassword.setError("Passwords don't match");
             valid = false;
         } else {

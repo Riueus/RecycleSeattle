@@ -1,4 +1,4 @@
-package com.bignerdranch.android.recycolumbus;
+package com.bignerdranch.android.recycleseattle;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -37,16 +37,16 @@ public class CreateProductEntryFragment extends Fragment {
         Button mYesButton = v.findViewById(R.id.create_yes_button);
         Button mNoButton = v.findViewById(R.id.create_no_button);
 
-        mYesButton.setOnClickListener(new View.OnClickListener(){
+        mYesButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 setData(true);
             }
         });
 
-        mNoButton.setOnClickListener(new View.OnClickListener(){
+        mNoButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 setData(false);
             }
         });
@@ -54,16 +54,15 @@ public class CreateProductEntryFragment extends Fragment {
         return v;
     }
 
-    private void setData(boolean isRecyclable){
+    private void setData(boolean isRecyclable) {
         Intent data = new Intent();
         data.putExtra(PRODUCT_NAME, mProductNameField.getText().toString());
         data.putExtra(IS_RECYCLABLE, isRecyclable);
-        if(getActivity() != null) {
+        if (getActivity() != null) {
             getActivity().setResult(Activity.RESULT_OK, data);
             getActivity().finish();
         } else {
-            Log.e("NULL","Null encountered when trying to setData");
+            Log.e("NULL", "Null encountered when trying to setData");
         }
-        //
     }
 }
